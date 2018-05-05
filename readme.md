@@ -56,3 +56,20 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## https://laravel.com/docs/5.5/authentication
+## Protecting Routes => to a route definition
+Route middleware can be used to only allow authenticated users to access a given route. Laravel ships with an auth middleware, which is defined at  Illuminate\Auth\Middleware\Authenticate. Since this middleware is already registered in your HTTP kernel, all you need to do is attach the middleware to a route definition:
+
+Route::get('profile', function () {
+    // Only authenticated users may enter...
+})->middleware('auth');
+
+## Protecting Routes => to a controller
+Of course, if you are using controllers, you may call the middleware method from the controller's constructor instead of attaching it in the route definition directly:
+
+public function __construct()
+{
+    $this->middleware('auth');
+}
